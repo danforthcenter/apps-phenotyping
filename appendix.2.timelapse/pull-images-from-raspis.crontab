@@ -1,0 +1,65 @@
+
+# Pull images from each RasPi twice per hour (staggered, for one pull every 2 to 3 minutes).
+# Copyright (c) 2017 Donald Danforth Plant Science Center -- see LICENSE-MIT
+# mail to j.s.hoyer at wustl dot edu
+
+# For error alert emails: if desired.
+# MAILTO=
+
+# Other crontabs in this directory take care of the RasPi end of things.
+
+RASPIDIR=/home/pi/images
+# Adjust this line at the start of each new experiment:
+SERVERDIR=/home/jhoyer/share/raspi/experiments/2017-01-27_Col-0/photos
+
+# Delay position #1-6 pulls by one minute to avoid ~temporary file
+# "vanished before they could be transferred" errors
+# and so that we get the file from the capture
+# that would otherwise start at the same instant.
+# For positions #7-12 (see below), delay by 3 minutes.
+
+### Upper level of chamber 129
+# Minute time = 1 + 5 * i and 31 + 5 * i
+# where i is RaspiCam position number.
+# Very first 'standard' pull at 8:36 AM:
+36 8-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos01:$RASPIDIR/* $SERVERDIR/fov-01/
+ 6 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos01:$RASPIDIR/* $SERVERDIR/fov-01/
+ # At 8:06 AM, the first image of the day has not yet been captured
+ # so trying to do a sync at that time would cause an error.
+
+41 8-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos02:$RASPIDIR/* $SERVERDIR/fov-02/
+11 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos02:$RASPIDIR/* $SERVERDIR/fov-02/
+
+46 8-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos03:$RASPIDIR/* $SERVERDIR/fov-03/
+16 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos03:$RASPIDIR/* $SERVERDIR/fov-03/
+
+51 8-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos04:$RASPIDIR/* $SERVERDIR/fov-04/
+21 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos04:$RASPIDIR/* $SERVERDIR/fov-04/
+
+56 8-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos05:$RASPIDIR/* $SERVERDIR/fov-05/
+26 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos05:$RASPIDIR/* $SERVERDIR/fov-05/
+
+31 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos06:$RASPIDIR/* $SERVERDIR/fov-06/
+ 1 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos06:$RASPIDIR/* $SERVERDIR/fov-06/
+
+### Lower level of chamber 129
+# Minute time = 5 * i - 2 and 5 * i - 32
+# where i is RaspiCam position number
+33 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos07:$RASPIDIR/* $SERVERDIR/fov-07/
+ 3 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos07:$RASPIDIR/* $SERVERDIR/fov-07/
+
+38 8-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos08:$RASPIDIR/* $SERVERDIR/fov-08/
+ 8 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos08:$RASPIDIR/* $SERVERDIR/fov-08/
+
+43 8-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos09:$RASPIDIR/* $SERVERDIR/fov-09/
+13 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos09:$RASPIDIR/* $SERVERDIR/fov-09/
+
+48 8-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos10:$RASPIDIR/* $SERVERDIR/fov-10/
+18 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos10:$RASPIDIR/* $SERVERDIR/fov-10/
+
+53 8-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos11:$RASPIDIR/* $SERVERDIR/fov-11/
+23 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos11:$RASPIDIR/* $SERVERDIR/fov-11/
+
+# Last 'standard' pull of the day at 4:58 PM:
+58 8-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos12:$RASPIDIR/* $SERVERDIR/fov-12/
+28 9-16 * * * rsync --remove-source-files -rtu -e ssh pi@ch129-pos12:$RASPIDIR/* $SERVERDIR/fov-12/

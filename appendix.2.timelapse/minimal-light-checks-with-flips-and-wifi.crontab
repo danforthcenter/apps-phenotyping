@@ -1,0 +1,37 @@
+
+# Standard RasPi 8-hour day maintenance schedule
+# (for in between experiments):
+# disconnect wifi at night
+# and optionally use photographs to monitor clock/light schedule drift.
+# This file is the same as minimal-light-checks-and-wifi.crontab,
+# but adds vertical and horizontal flips to commented-out image captures
+# (just in case one ends up wanting to analyze the photos)
+# and staggers captures by 5 seconds for just a bit higher temporal resolution.
+
+# Copyright (c) 2017 Donald Danforth Plant Science Center -- see LICENSE-MIT
+# mail to j.s.hoyer at wustl dot edu
+# Started 2016-01-22.
+
+# Turn wifi off at night, to avoid blue LED light from dongle.
+# Leave an hour of flex time to sync any missed images, if needed.
+40 17 * * * sudo ifdown wlan0
+
+# Turn back on just before dawn
+20  8 * * * sudo ifup wlan0
+
+# Uncomment some subset of the following
+# to check lights-on time:
+#29,30,31,32,33,34  8 * * * /bin/sleep 50; /usr/bin/raspistill -vf -hf -o  /home/pi/predawn-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg
+#29,30,31,32,33,34  8 * * * /bin/sleep 40; /usr/bin/raspistill -vf -hf -o  /home/pi/predawn-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg
+#29,30,31,32,33,34  8 * * * /bin/sleep 30; /usr/bin/raspistill -vf -hf -o  /home/pi/predawn-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg
+#29,30,31,32,33,34  8 * * * /bin/sleep 20; /usr/bin/raspistill -vf -hf -o  /home/pi/predawn-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg
+#29,30,31,32,33,34  8 * * * /bin/sleep 10; /usr/bin/raspistill -vf -hf -o  /home/pi/predawn-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg
+#29,30,31,32,33,34  8 * * *                /usr/bin/raspistill -vf -hf -o  /home/pi/predawn-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg
+
+# check lights-off time:
+#30,31,32,33,34 16 * * * /bin/sleep 50; /usr/bin/raspistill -vf -hf -o /home/pi/postdusk-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg
+#30,31,32,33,34 16 * * * /bin/sleep 40; /usr/bin/raspistill -vf -hf -o /home/pi/postdusk-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg
+#30,31,32,33,34 16 * * * /bin/sleep 30; /usr/bin/raspistill -vf -hf -o /home/pi/postdusk-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg
+#30,31,32,33,34 16 * * * /bin/sleep 20; /usr/bin/raspistill -vf -hf -o /home/pi/postdusk-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg
+#30,31,32,33,34 16 * * * /bin/sleep 10; /usr/bin/raspistill -vf -hf -o /home/pi/postdusk-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg
+#30,31,32,33,34 16 * * *                /usr/bin/raspistill -vf -hf -o /home/pi/postdusk-images/$(date +"\%Y-\%m-\%d_\%H\%M\%S")_$(hostname).jpg

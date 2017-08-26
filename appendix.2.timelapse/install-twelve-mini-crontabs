@@ -1,0 +1,57 @@
+#!/usr/bin/env sh
+
+# Rsync each crontab to the relevant RasPi, then install.
+
+# Copyright (c) 2017 Donald Danforth Plant Science Center -- see LICENSE-MIT
+# mail to j.s.hoyer at wustl dot edu
+# Started 2016-07-04.
+
+echo "Copying and installing a new cron table on each RasPi."
+echo "RasPi in position 1"
+rsync -rtu -e ssh minimal-light-checks-and-wifi.crontab pi@ch129-pos01:/home/pi/
+ssh pi@ch129-pos01 'crontab /home/pi/minimal-light-checks-and-wifi.crontab'
+echo "RasPi in position 2"
+rsync -rtu -e ssh minimal-light-checks-and-wifi.crontab pi@ch129-pos02:/home/pi/
+ssh pi@ch129-pos02 'crontab /home/pi/minimal-light-checks-and-wifi.crontab'
+echo "RasPi in position 3"
+rsync -rtu -e ssh minimal-light-checks-and-wifi.crontab pi@ch129-pos03:/home/pi/
+ssh pi@ch129-pos03 'crontab /home/pi/minimal-light-checks-and-wifi.crontab'
+
+echo "RasPi in position 5 (before #4, which is rotated 180°)"
+rsync -rtu -e ssh minimal-light-checks-and-wifi.crontab pi@ch129-pos05:/home/pi/
+ssh pi@ch129-pos05 'crontab /home/pi/minimal-light-checks-and-wifi.crontab'
+
+echo "RasPi in position 7"
+rsync -rtu -e ssh minimal-light-checks-and-wifi.crontab pi@ch129-pos07:/home/pi/
+ssh pi@ch129-pos07 'crontab /home/pi/minimal-light-checks-and-wifi.crontab'
+echo "RasPi in position 8"
+rsync -rtu -e ssh minimal-light-checks-and-wifi.crontab pi@ch129-pos08:/home/pi/
+ssh pi@ch129-pos08 'crontab /home/pi/minimal-light-checks-and-wifi.crontab'
+
+echo "RasPi in position 12"
+rsync -rtu -e ssh minimal-light-checks-and-wifi.crontab pi@ch129-pos12:/home/pi/
+ssh pi@ch129-pos12 'crontab /home/pi/minimal-light-checks-and-wifi.crontab'
+
+
+# The RasPis in positions 4, 6, 9, 10, and 11
+# are oriented "backwards"
+# and therefore their images need vertical and horizontal flips
+# to be consistent with the others.
+
+echo "RasPi in position 4"
+rsync -rtu -e ssh minimal-light-checks-with-flips-and-wifi.crontab pi@ch129-pos04:/home/pi/
+ssh pi@ch129-pos04 'crontab /home/pi/minimal-light-checks-with-flips-and-wifi.crontab'
+
+echo "RasPi in position 6"
+rsync -rtu -e ssh minimal-light-checks-with-flips-and-wifi.crontab pi@ch129-pos06:/home/pi/
+ssh pi@ch129-pos06 'crontab /home/pi/minimal-light-checks-with-flips-and-wifi.crontab'
+
+echo "RasPi in position 9"
+rsync -rtu -e ssh minimal-light-checks-with-flips-and-wifi.crontab pi@ch129-pos09:/home/pi/
+ssh pi@ch129-pos09 'crontab /home/pi/minimal-light-checks-with-flips-and-wifi.crontab'
+echo "RasPi in position 10"
+rsync -rtu -e ssh minimal-light-checks-with-flips-and-wifi.crontab pi@ch129-pos10:/home/pi/
+ssh pi@ch129-pos10 'crontab /home/pi/minimal-light-checks-with-flips-and-wifi.crontab'
+echo "RasPi in position 11"
+rsync -rtu -e ssh minimal-light-checks-with-flips-and-wifi.crontab pi@ch129-pos11:/home/pi/
+ssh pi@ch129-pos11 'crontab /home/pi/minimal-light-checks-with-flips-and-wifi.crontab'

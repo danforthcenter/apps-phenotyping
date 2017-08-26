@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+
+# Helper script for taking and viewing a snapshot
+
+# Copyright (c) 2017 Donald Danforth Plant Science Center -- see LICENSE-MIT
+# mail to j.s.hoyer at wustl dot edu
+# Started 2017-01-30.
+
+echo "Usage:
+                                  (for a picture from RasPi in Position 1)
+                                                                        V
+take-one-color-test-picture-and-pull-it-to-cluster.sh /path/on/cluster/ 1
+"
+
+destdir=$1
+
+position=$2
+hstnm=$(printf "ch129-pos%02.0f" $position)  # Hardcoded hostname here!
+echo $hstnm
+
+daytime=$(date +"%Y-%m-%d_%H%M_")
+case $position in
+    1|2|3|5|7|8|12) echo "Normal orientation";
+		    ssh pi@$hstnm "raspistill -r -q 100 -o /home/pi/color-test/$daytime$hstnm.jpg";;
+    4|6|9|10|11)    echo    "Flipped orientation";
+		    ssh pi@$hstnm "raspistill -r -q 100 -vf -hf -o /home/pi/color-test/$daytime$hstnm.jpg";;
+    *)           echo "Second argument MUST be a number 1 to 12";;
+esac
+
+echo "Pulling photo to server."
+rsync -rtu -e ssh --remove-source-files pi@$hstnm:/home/pi/color-test/* $destdir
+
+# The following lines may be convenient
+# if you are pulling into a directory
+# that is configured to be viewable,
+# e.g. with an .htaccess file.
+# Very fragile---hardcoded path!
+##dirprefix="/home/jhoyer/share/"
+##uriprefix="http://asrp.danforthcenter.org/share/jhoyer/"
+# No '+' in directory names please!
+##echo $destdir/$daytime$hstnm.jpg
+##echo $destdir/$daytime$hstnm.jpg | sed "s+$dirprefix+$uriprefix+g"
