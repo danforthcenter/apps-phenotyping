@@ -43,7 +43,7 @@ def takePic(name):
         # Set ISO to the desired value
         camera.iso = 300
         # Wait for the automatic gain control to settle
-        sleep(2)
+        time.sleep(2)
         # Now fix the values
         camera.shutter_speed = camera.exposure_speed
         camera.exposure_mode = 'off'
@@ -53,7 +53,7 @@ def takePic(name):
         camera.capture(filename, quality=100)
 		# starts the preview and then wait 1 seconds before
 		# taking the picture
-		# time.sleep(1)
+		time.sleep(1)
 		camera.capture(picPath)
 		print("Picture Taken: " + picName + "\n")
 
