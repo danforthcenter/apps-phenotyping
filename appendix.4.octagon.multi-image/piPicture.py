@@ -38,11 +38,23 @@ def takePic(name):
 	# picPath local directory must be the same as line 1 in syncScript
 	# and picPath local-folder must exist in the Raspberry Pi
 	# desktop before running this script
-	with picamera.PiCamera() as cam:
+	with picamera.PiCamera() as camera:
+		camera.resolution = (3280, 2464)
+        # Set ISO to the desired value
+        camera.iso = 300
+        # Wait for the automatic gain control to settle
+        sleep(2)
+        # Now fix the values
+        camera.shutter_speed = camera.exposure_speed
+        camera.exposure_mode = 'off'
+        g = camera.awb_gains
+        camera.awb_mode = 'off'
+        camera.awb_gains = g
+        camera.capture(filename, quality=100)
 		# starts the preview and then wait 1 seconds before
 		# taking the picture
 		# time.sleep(1)
-		cam.capture(picPath)
+		camera.capture(picPath)
 		print("Picture Taken: " + picName + "\n")
 
 # run this script only if the script is run directly.
