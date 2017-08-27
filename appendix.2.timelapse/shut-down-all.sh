@@ -2,10 +2,8 @@
 
 # Helper script for shutting down twelve RasPis
 
-# Copyright (c) 2017 Donald Danforth Plant Science Center -- see LICENSE-MIT
+# Copyright (c) 2017 Donald Danforth Plant Science Center -- see LICENSE
 # mail to j.s.hoyer at wustl dot edu
-# Revised 2016-12-22.
-
 # (Simply removing power from the RasPis works too,
 #  but that can potentially damage them.)
 
@@ -30,26 +28,26 @@ $MSG_KILLED_GOOD
 "
 
 echo "RasPi in position 1"
-timeout 5 ssh pi@ch129-pos01 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi01 'sudo shutdown -h now'
 echo "RasPi in position 2"
-timeout 5 ssh pi@ch129-pos02 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi02 'sudo shutdown -h now'
 echo "RasPi in position 3"
-timeout 5 ssh pi@ch129-pos03 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi03 'sudo shutdown -h now'
 echo "RasPi in position 4"
-timeout 5 ssh pi@ch129-pos04 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi04 'sudo shutdown -h now'
 echo "RasPi in position 5"
-timeout 5 ssh pi@ch129-pos05 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi05 'sudo shutdown -h now'
 echo "RasPi in position 6"
-timeout 5 ssh pi@ch129-pos06 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi06 'sudo shutdown -h now'
 echo "RasPi in position 7"
-timeout 5 ssh pi@ch129-pos07 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi07 'sudo shutdown -h now'
 echo "RasPi in position 8"
-timeout 5 ssh pi@ch129-pos08 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi08 'sudo shutdown -h now'
 echo "RasPi in position 9"
-timeout 5 ssh pi@ch129-pos09 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi09 'sudo shutdown -h now'
 echo "RasPi in position 10"
-timeout 5 ssh pi@ch129-pos10 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi10 'sudo shutdown -h now'
 echo "RasPi in position 11"
-timeout 5 ssh pi@ch129-pos11 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi11 'sudo shutdown -h now'
 echo "RasPi in position 12"
-timeout 5 ssh pi@ch129-pos12 'sudo shutdown -h now'
+timeout 5 ssh pi@timepi12 'sudo shutdown -h now'
