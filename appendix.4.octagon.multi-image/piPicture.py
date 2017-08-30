@@ -39,23 +39,25 @@ def takePic(name):
 	# and picPath local-folder must exist in the Raspberry Pi
 	# desktop before running this script
 	with picamera.PiCamera() as camera:
+		# Camera resolution is set for an 8 megapixel camera.
+		# Modify as desired (e.g. 2592, 1944 for a 5 megapixel camera).
 		camera.resolution = (3280, 2464)
-        # Set ISO to the desired value
-        camera.iso = 300
-        # Wait for the automatic gain control to settle
-        time.sleep(2)
-        # Now fix the values
-        camera.shutter_speed = camera.exposure_speed
-        camera.exposure_mode = 'off'
-        g = camera.awb_gains
-        camera.awb_mode = 'off'
-        camera.awb_gains = g
-        camera.capture(filename, quality=100)
-		# starts the preview and then wait 1 seconds before
-		# taking the picture
-		time.sleep(1)
-		camera.capture(picPath)
-		print("Picture Taken: " + picName + "\n")
+                # Set ISO to the desired value
+                camera.iso = 300
+                # Wait for the automatic gain control to settle
+                time.sleep(2)
+                # Now fix the values
+                camera.shutter_speed = camera.exposure_speed
+                camera.exposure_mode = 'off'
+                g = camera.awb_gains
+                camera.awb_mode = 'off'
+                camera.awb_gains = g
+                camera.capture(filename, quality=100)
+				# starts the preview and then wait 1 seconds before
+				# taking the picture
+                time.sleep(1)
+                camera.capture(picPath)
+                print("Picture Taken: " + picName + "\n")
 
 # run this script only if the script is run directly.
 if __name__ == "__main__":
