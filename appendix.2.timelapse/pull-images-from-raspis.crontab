@@ -1,13 +1,20 @@
-# Pull images from each RasPi twice per hour (staggered, for one pull every 2 to 3 minutes).
+# Pull images from each Raspberry Pi twice per hour (staggered, for one pull every 2 to 3 minutes).
 # Copyright (c) 2017 Donald Danforth Plant Science Center -- see LICENSE
 # mail to j.s.hoyer at wustl dot edu
+
+# This script is prepared for time-lapse imaging with 12 Raspberry Pis.
+# To use less than 12 Raspberry Pis, comment or delete the lines for the excess Raspberry Pis.
+# To use more than 12 Raspberry Pis, copy and paste the section for each Raspberry Pi,
+# (e.g. lines 24 and 25), edit the Raspberry Pi hostname, and optionally edit the pull times.
 
 # For error alert emails: if desired.
 # MAILTO=
 
 # Adjust these lines if necessary:
 RASPIDIR=/home/pi/images
-SERVERDIR= path.to.deposit.data #e.g./home/jhoyer/share/raspi/experiments/2017-01-27_Col-0/photos
+SERVERDIR=directory_to_store_images
+# Modify SERVERDIR to an existing directory in the server to store time-lapse images
+# e.g./home/jdoe/time-lapse-images
 
 # Delay position #1-6 pulls so they are after image capture 
 # For positions #7-12 (see below), delay by 3 minutes.

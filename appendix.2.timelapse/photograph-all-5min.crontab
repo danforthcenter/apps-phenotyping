@@ -1,11 +1,11 @@
-# Standard RasPi 8-hour day photography schedule (with flips),
+# Standard Raspberry Pi 8-hour day photography schedule (with flips),
 # plus disconnection of wifi at night.
 # Copyright (c) 2017 Donald Danforth Plant Science Center -- see LICENSE
 # mail to j.s.hoyer at wustl dot edu
 
 # In this experiment day length of the chamber is 8 hours
 # from 8:30am standard time to 5:30pm standard time
-# If the imaging ours of the experiment are different the times will need to be altered.
+# Alter these times according to experimental setup (e.g. growth chamber photoperiod).
 
 # Save raw Bayer data for first image of the day
 # The following command snaps the first image at 8:35 (8:35 am standard time) every day and also saves Bayer data 
@@ -14,10 +14,10 @@
 # For the first half hour (besides the first image) of imaging, image every 5 minutes between 8:40 and 8:55 (8:40 am to 8:55 am standard time)
 40,45,50,55 8 * * * /usr/bin/raspistill -q 100 -o /home/pi/images/$(date +"\%Y-\%m-\%d_\%H\%M")_$(hostname).jpg
 
-# For the imaging hours between 9:00 and 16:00 (9:00am to 4:55pm standard time) take images every 5 minutes
+# For the imaging hours 9:00 to 16:00 take images every 5 minutes (acquires images from 9:00am to 4:55pm standard time)
 0,5,10,15,20,25,30,35,40,45,50,55 9-16 * * * /usr/bin/raspistill -q 100 -o /home/pi/images/$(date +"\%Y-\%m-\%d_\%H\%M")_$(hostname).jpg
 
-# During the last half hour of imaging 16:00 to 16:25 (5:00pm to 5:25 pm standard time) take images every 5 minutes
+# During the last half hour of imaging 17:00 to 17:25 (5:00pm to 5:25 pm standard time) take images every 5 minutes
 0,5,10,15,20,25 17 * * * /usr/bin/raspistill -q 100 -o /home/pi/images/$(date +"\%Y-\%m-\%d_\%H\%M")_$(hostname).jpg
 
 # The following command snaps an image at 17:30 (5:30pm standard time) every day and also saves Bayer data 
@@ -25,21 +25,19 @@
 
 ############# Turn wifi off while there is no imaging ###################
 
-# In this experiment day length of the chamber is 8 hours
-# from 8:30am standard time to 5:30pm standard time
-# Turn wifi off at night, to avoid blue LED light from dongle.
-# Leave an hour of flex time to sync any missed images, if needed.
-# The first two numbers will need to be adjusted based on the light 
-# conditions in the chamber you are growing plants in.
-# The current settings turn the wifi off at 17:40 (5:40pm standard time),
-# which is just after the lights turn off at 17:30 (5:30pm standard time).
+# In this experiment day length of the chamber is 8 hours from 8:30am standard
+# time to 5:30pm standard time. If using a wifi dongle (e.g. for Raspberry Pi
+# version 2), turn wifi off at night, to avoid blue LED light from dongle.
+# Leave an hour of flex time to sync any missed images, if needed. The first
+# two numbers will need to be adjusted based on the light conditions in the 
+# growth chamber. The current settings turn the wifi off at 17:40 (5:40pm
+# standard time), which is just after the lights turn off in the growth
+# chamber, at 17:30 (5:30pm standard time).
 
 40 17 * * * sudo ifdown wlan0
 
-# Turn back on just before dawn.
-# Again the first two number will need to be adjusted based on the light
-# conditions in the chamber you are growing plants in.
-# The current setting turn the wifi on at 8:20 (8:20am standard time),
-# which is before the lights turn on at 8:30 (8:30am standard time)
+# Turn wifi back on at 8:20 (8:20am standard time), just before the lights turn
+# on in the growth chamber at 8:30 (8:30am standard time). The first  two numbers
+# will need to be adjusted based on the light conditions in the growth chamber.
 
 20  8 * * * sudo ifup wlan0

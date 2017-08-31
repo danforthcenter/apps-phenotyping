@@ -1,27 +1,21 @@
 #!/usr/bin/env sh
 
 # Helper script for shutting down twelve RasPis
-
 # Copyright (c) 2017 Donald Danforth Plant Science Center -- see LICENSE
 # mail to j.s.hoyer at wustl dot edu
-# (Simply removing power from the RasPis works too,
-#  but that can potentially damage them.)
 
-# Original version did not work quickly,
-# because no timeout period was specified;
-# there was a long lag after each RasPi shut down
-# before the SSH connection ends.
+# This script is prepared for time-lapse imaging with 12 Raspberry Pis.
+# To use less than 12 Raspberry Pis, comment or delete the lines for the excess Raspberry Pis.
+# To use more than 12 Raspberry Pis, copy and paste the script section for each Raspberry Pi,
+# (e.g. lines 24 and 25) and edit the Raspberry Pi position number and hostname.
 
 MSG_KILLED_GOOD="A 'Killed by signal 15' message
 indicates that shutdown probably succeeded."
 
-# A five second timeout is not all that long;
-# RasPis with a flaky network connection will be missed.
-# At some point it becomes easier
-# to run the commands below individually.
-# Do not specify any timeout
-# if it becomes clear that establishing the initial SSH connection
-# is the limiting factor.
+# Raspberry Pis with an unstable network connection may not shut down.
+# Alternatively, run the commands below individually.
+# Do not specify any timeout if establishing the initial SSH connection
+# is the limiting factor (e.g. due to unstable network connection).
 
 echo "Shutting down all twelve RasPis.
 $MSG_KILLED_GOOD
