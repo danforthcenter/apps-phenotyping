@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="34b570a0-880c-4b56-ad6a-d143d64ecddb" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/appendix.2.timelapse/LICENSE-MIT" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/appendix.2.timelapse/README.org" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/appendix.2.timelapse/install-twelve-crontabs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/appendix.2.timelapse/install-twelve-mini-crontabs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/appendix.2.timelapse/minimal-light-checks-and-wifi.crontab" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/appendix.2.timelapse/minimal-light-checks-with-flips-and-wifi.crontab" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/appendix.2.timelapse/photograph-every-5min.crontab" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/appendix.2.timelapse/shut-down-all-12-raspis" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/appendix.2.timelapse/take-one-picture-and-pull-it-with-rsync" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appendix.4.octagon.multi-image/appendix.4.readme.md" afterPath="$PROJECT_DIR$/appendix.4.octagon.multi-image/appendix.4.readme.md" />
-    </list>
+    <list default="true" id="34b570a0-880c-4b56-ad6a-d143d64ecddb" name="Default" comment="" />
     <ignored path="apps-phenotyping.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,7 +67,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="56" y="117" width="980" height="724" extended-state="1" />
+    <frame x="56" y="117" width="980" height="724" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
