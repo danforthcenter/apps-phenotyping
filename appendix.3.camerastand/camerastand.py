@@ -20,8 +20,7 @@ import subprocess as sp
 
 def takePic(name):
 	# get the filepath of the picture
-	date=datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
-	picName = str(name)+"_"+ str(date)
+	picName = name
 	# modify picPath to a existing directory to store acquired images
 	picPath = "/home/pi/Desktop/local-folder/" + picName
 
@@ -48,7 +47,8 @@ def main():
 	print("taking picture")
 	
 	picname = sys.argv[1]
-	name = picname + ".jpg"
+	date = datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
+	name = picname +"_"+ str(date) +".jpg"
 	
 	# use the takePic function to take a picture at the starting position
 	takePic(name)

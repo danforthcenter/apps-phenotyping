@@ -1,5 +1,5 @@
-ssh pi@sideview1 "cd ~/Desktop/ && bash syncScript"
-ssh pi@topviewpi "cd ~/Desktop/ && bash syncScript"
-ssh pi@sideview2 "cd ~/Desktop/ && bash syncScript"
+ssh pi@sideview1 "cd ~/Desktop/apps-phenotyping/appendix.4.octagon.multi-image/ && bash syncScript.sh"
+ssh pi@topviewpi "cd ~/Desktop/apps-phenotyping/appendix.4.octagon.multi-image/ && bash syncScript.sh"
+ssh pi@sideview2 "cd ~/Desktop/apps-phenotyping/appendix.4.octagon.multi-image/ && bash syncScript.sh"
 
-bash syncScript
+bash ~/Desktop/apps-phenotyping/appendix.4.octagon.multi-image/syncScript.sh

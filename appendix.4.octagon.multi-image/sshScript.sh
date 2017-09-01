@@ -14,7 +14,7 @@ do
 	read barcode
 
 	# get the date
-	date=`date +%Y%m%d.%s`
+	date=`date +%Y%m%d.%H%M`
 
 	# breaks out of the while loop if quit is typed
 	if [ "$barcode" = 'quit' ];
@@ -34,13 +34,13 @@ do
 	# master Raspberry Pi, if SSH key was enabled
 
 	# run script to take image for sideview1, sideview2, topviewpi and this pi
-	ssh pi@sideview1 "cd ~/Desktop/ && python piPicture.py $date $barcode"
-	ssh pi@sideview2 "cd ~/Desktop/ && python piPicture.py $date $barcode"
-	ssh pi@topviewpi "cd ~/Desktop/ && python piPicture.py $date $barcode"
-	python piPicture.py $date $barcode
+	ssh pi@sideview1 "cd ~/Desktop/apps-phenotyping/appendix.4.octagon.multi-image/ && python piPicture.py $date $barcode"
+	ssh pi@sideview2 "cd ~/Desktop/apps-phenotyping/appendix.4.octagon.multi-image/ && python piPicture.py $date $barcode"
+	ssh pi@topviewpi "cd ~/Desktop/apps-phenotyping/appendix.4.octagon.multi-image/ && python piPicture.py $date $barcode"
+	python ~/Desktop/apps-phenotyping/appendix.4.octagon.multi-image/piPicture.py $date $barcode
 
 	# run syncPi to then run syncScript, in all Raspberry Pis
-	bash syncPi
+	bash ~/Desktop/apps-phenotyping/appendix.4.octagon.multi-image/syncPi.sh
 
 	echo " "
 done
